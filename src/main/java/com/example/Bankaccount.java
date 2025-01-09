@@ -1,50 +1,90 @@
 package com.example;
 
+import java.util.Random;
+
 public class Bankaccount {
-    //create a String variable called name
-    private String name;
-    private double balance;
-
-    // create a constructor that takes a String and double parameter    
-    public Bankaccount(String name, double balance) {
-        this.name = name;
-        this.balance = balance;
-    }
     
-    // create getters and setters for the name and balance variables
-    public String getName() {
-        return name;
+    public int accountNumber;
+    public String accountHolderName;
+    public double balance;
+    public String accountType;
+    public Random rand = new Random();
+
+    //random constructor
+    public Bankaccount(){
+      this.accountNumber = rand.nextInt(10000000);
+      
+      int nameChoice = rand.nextInt(4);
+      if (nameChoice == 0){
+        this.accountHolderName = "John rice";
+      } else if (nameChoice == 1){
+        this.accountHolderName = "Rob Taco";
+      } else if (nameChoice == 2){
+        this.accountHolderName = "Alex Burrito";
+      } else {
+        this.accountHolderName = "Ricky water";
+      }
+
+      this.balance = rand.nextInt(10000);
+
+      int typeChoice = rand.nextInt(2);
+        if (typeChoice == 0){
+            this.accountType = "Checking";
+        } else {
+            this.accountType = "Savings";
+        }
+
     }
 
-    public void setName(String name) {
-        this.name = name;
+    //constructor 
+    public Bankaccount(int accountNumber, String accountHolderName, double balance, String accountType){
+        this.accountNumber = accountNumber;
+        this.accountHolderName = accountHolderName;
+        this.balance = balance;
+        this.accountType = accountType;
     }
 
-    public double getBalance() {
+    //getters and setters
+    public double getAccountNumber(){
+        return accountNumber;
+    }
+
+    public void setAccountNumber(int accountNumber){
+        this.accountNumber = accountNumber;
+    }
+
+    public String getAccountHolderName(){
+        return accountHolderName;
+    }
+
+    public void setAccountHolderName(String accountHolderName){
+        this.accountHolderName = accountHolderName;
+    }
+
+    public double getBalance(){
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(double balance){
         this.balance = balance;
     }
 
-    // create two methods that add and subtract from the balance
-    public void deposit(double amount) {
-        balance += amount;
+    public String getAccountType(){
+        return accountType;
     }
 
-    public void withdraw(double amount) {
-        balance -= amount;
+    public void setAccountType(String accountType){
+        this.accountType = accountType;
     }
 
-    // create a toString method that returns the name and balance
-    @Override
-    public String toString() {
-        return "Bankaccount{" +
-                "name='" + name + '\'' +
-                ", balance=" + balance +
-                '}';
+    //toString method
+    public String toString(){
+        return "\n Account Number: " + accountNumber + "\nAccount Holder Name: " + 
+        accountHolderName + "\nBalance: " + balance + "\nAccount Type: " + accountType;
     }
+
+
+
     
 
 }

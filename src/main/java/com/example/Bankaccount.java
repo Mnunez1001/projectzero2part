@@ -4,25 +4,27 @@ import java.util.Random;
 
 public class Bankaccount {
     
-    public int accountNumber;
-    public String accountHolderName;
-    public double balance;
-    public String accountType;
-    public Random rand = new Random();
+    private int accountNumber;
+    private String accountHolderName;
+    private double balance;
+    private String accountType;
+    private Random rand = new Random();
 
     //random constructor
     public Bankaccount(){
       this.accountNumber = rand.nextInt(10000000);
       
-      int nameChoice = rand.nextInt(4);
+      int nameChoice = rand.nextInt(5);
       if (nameChoice == 0){
         this.accountHolderName = "John rice";
       } else if (nameChoice == 1){
         this.accountHolderName = "Rob Taco";
       } else if (nameChoice == 2){
         this.accountHolderName = "Alex Burrito";
-      } else {
+      } else if (nameChoice == 3){ 
         this.accountHolderName = "Ricky water";
+      } else{
+        this.accountHolderName = "Sally Juice";
       }
 
       this.balance = rand.nextInt(10000);
@@ -81,6 +83,26 @@ public class Bankaccount {
     public String toString(){
         return "\n Account Number: " + accountNumber + "\nAccount Holder Name: " + 
         accountHolderName + "\nBalance: " + balance + "\nAccount Type: " + accountType;
+    }
+
+    //Method
+
+    public void withdraw (double amount){
+        if(isSufficiantFunds(amount)){
+            balance -= amount;
+            System.out.println("\nWithdrawal of $" + amount + " successful. Remaining balance: $" + balance);
+        } else {
+            System.out.println("Insufficiant funds. Withdrawal of $" + amount + " failed. Balance: $" + balance);
+
+        }
+
+
+
+    }
+
+    //helper method
+    public boolean isSufficiantFunds(double amount){
+        return balance >= amount;
     }
 
 
